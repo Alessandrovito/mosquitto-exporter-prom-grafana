@@ -1,4 +1,4 @@
-Prometheus Grafana , Mosquitto Broker and Mosquitto Exporter [].
+Prometheus Grafana , Mosquitto Broker and Mosquitto Exporter
 ========
 
 A monitoring solution for [mosquitto-exporter](https://github.com/Alessandrovito/mosquitto-exporter) with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), 
