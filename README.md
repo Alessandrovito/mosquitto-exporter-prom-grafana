@@ -1,7 +1,8 @@
-Prometheus and Grafana to support Mosquitto Exporter [].
+Prometheus Grafana , Mosquitto Broker and Mosquitto Exporter [].
 ========
 
-A monitoring solution for [mosquitto-exporter](https://github.com/Alessandrovito/mosquitto-exporter) with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/).
+A monitoring solution for [mosquitto-exporter](https://github.com/Alessandrovito/mosquitto-exporter) with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), 
+[Mosquitto Broker](https://github.com/Alessandrovito/docker/tree/master/mosquitto-auth-plugin/1.4.14)
 
 ## Install
 
@@ -18,11 +19,22 @@ Containers:
 
 * Prometheus (metrics database) `http://<host-ip>:9090`
 * Grafana (visualize metrics) `http://<host-ip>:3000`
+* Mosquitto Broker
+* Mosquitto-exporter
 
-Important:
+## Setup Mosquitto-exporter
 
-Edit file `prometheus/prometheus.yml` targets and set hostname of mosquitto-exporter. 
-The hostname and its ip need to be set in docker-compose.yml as entry of extra_hosts of Prometheus container.
+In docker-compose.yml you can edit JAVA_OPTS
+
+`environment:
+      - "JAVA_OPTS=-Dlogging.level.com.vitale.exporter.mosquitto=DEBUG -Dmosquitto.exporter.account.username=namemosquitto -Dmosquitto.exporter.account.password=pwmosquitto -Dmosquitto.exporter.broker.name=mosquitto"
+`
+
+You can set 
+* logging.level.com.vitale.exporter.mosquitto: Logging level for mosquitto-exporter
+* mosquitto.exporter.account.username: Account username dedicated to Mosquitto Exporter user
+* mosquitto.exporter.account.password: Account password dedicated to Mosquitto Exporter user
+* mosquitto.exporter.broker.name: hostname to reach URL Mqtt Broker
 
 ## Setup Grafana
 

@@ -7,8 +7,39 @@ networks:
 volumes:
     prometheus_data: {}
     grafana_data: {}
-
+    mosquitto_data: {}
+    
 services:
+
+  mosquitto-broker:
+    image: alessandrovito/mosquitto-auth-plugin:1.4.14
+    container_name: mosquitto
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - mosquitto_data:/var/lib/mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "8883:8883"
+       
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+  mosquitto-exporter:
+    image: alessandrovito/mosquitto-exporter-docker:1.0
+    container_name: mosquitto-exporter
+    #entrypoint: /run.sh
+    environment:
+      - "JAVA_OPTS=-Dlogging.level.com.vitale.exporter.mosquitto=DEBUG -Dmosquitto.exporter.account.username=namemosquitto -Dmosquitto.exporter.account.password=pwmosquitto -Dmosquitto.exporter.broker.name=mosquitto"
+    restart: unless-stopped
+    ports:
+      - "9180:9180"
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
 
   prometheus:
     image: prom/prometheus:v2.2.0-rc.0
@@ -30,10 +61,6 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
-    extra_hosts:
-       - "ubuntu-msi-1:192.168.140.3"
-       - "ubuntu-msi-2:192.168.140.4"
-       - "ubuntu-msi-3:192.168.140.5" 
   
   grafana:
     #image: grafana/grafana:5.0.1
