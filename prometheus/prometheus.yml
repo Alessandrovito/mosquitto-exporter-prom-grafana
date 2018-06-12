@@ -1,11 +1,11 @@
 global:
-  scrape_interval:     60s
-  evaluation_interval: 60s
+  scrape_interval:     20s
+  evaluation_interval: 20s
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
-  - job_name: 'mosquitto-exporter1'
-    scrape_interval: 60s
+  - job_name: 'mosquitto-exporter-job'
+    scrape_interval: 20s
     metrics_path: '/prometheus-metrics'
     static_configs:
       - targets: ['mosquitto-exporter:9180']
