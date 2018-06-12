@@ -1,11 +1,11 @@
-dockprom
+Prometheus and Grafana to support Mosquitto Exporter [].
 ========
 
-A monitoring solution for Mosquitto Broker with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/).
+A monitoring solution for [mosquitto-exporter](https://github.com/Alessandrovito/mosquitto-exporter) with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/).
 
 ## Install
 
-Clone this repository on your Docker host, cd into dockprom directory and run compose up:
+Clone this repository on your Docker host, cd into mosquitto-exporter-prom-grafana directory and run compose up:
 
 ```bash
 git clone https://github.com/Alessandrovito/mosquitto-exporter-prom-grafana.git
@@ -19,6 +19,10 @@ Containers:
 * Prometheus (metrics database) `http://<host-ip>:9090`
 * Grafana (visualize metrics) `http://<host-ip>:3000`
 
+Important:
+
+Edit file `prometheus/prometheus.yml` targets and set hostname of mosquitto-exporter. 
+The hostname and its ip need to be set in docker-compose.yml as entry of extra_hosts of Prometheus container.
 
 ## Setup Grafana
 
@@ -41,3 +45,4 @@ The Mosquitto Broker Dashboard shows key metrics for monitoring the resource usa
 * The moving average of the number of CONNECT packets received by the broker 
 * The total number of messages of any type received,sent and dropped since the broker started.
 * The Rate of messages sent and received by Broker
+* Publish messages sent, received and dropped by Broker
