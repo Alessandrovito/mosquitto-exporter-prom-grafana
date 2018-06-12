@@ -8,16 +8,11 @@ A monitoring solution for Mosquitto Broker with [Prometheus](https://prometheus.
 Clone this repository on your Docker host, cd into dockprom directory and run compose up:
 
 ```bash
-git clone https://github.com/stefanprodan/dockprom
-cd dockprom
+git clone https://github.com/Alessandrovito/mosquitto-exporter-prom-grafana.git
+cd mosquitto-exporter-prom-grafana
 
 docker-compose up -d
 ```
-
-Prerequisites:
-
-* Docker Engine >= 1.13
-* Docker Compose >= 1.11
 
 Containers:
 
@@ -36,17 +31,13 @@ Grafana is preconfigured with dashboards and Prometheus as the default data sour
 * Url: http://prometheus:9090
 * Access: proxy
 
-***Mosquitto Exportet***
+***Mosquitto Exporter***
 
-![Host](https://raw.githubusercontent.com/stefanprodan/dockprom/master/screens/Grafana_Docker_Host.png)
+![Host](http://www.alessandrovitale.it/images/Screenshot_grafana_mosquitto_exporter.png)
 
-The Docker Host Dashboard shows key metrics for monitoring the resource usage of your server:
+The Mosquitto Broker Dashboard shows key metrics for monitoring the resource usage of your server:
 
-* Server uptime, CPU idle percent, number of CPU cores, available memory, swap and storage
-* System load average graph, running and blocked by IO processes graph, interrupts graph
-* CPU usage graph by mode (guest, idle, iowait, irq, nice, softirq, steal, system, user)
-* Memory usage graph by distribution (used, free, buffers, cached)
-* IO usage graph (read Bps, read Bps and IO time)
-* Network usage graph by device (inbound Bps, Outbound Bps)
-* Swap usage and activity graphs
-
+* The number of currently connected, disconnected clients
+* The moving average of the number of CONNECT packets received by the broker 
+* The total number of messages of any type received,sent and dropped since the broker started.
+* The Rate of messages sent and received by Broker
