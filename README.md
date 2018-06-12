@@ -38,9 +38,8 @@ You can set
 
 ## Setup Grafana
 
-Navigate to `http://<host-ip>:3000` and login with user ***admin*** password ***admin***. You can change the credentials in the compose file or by supplying the `ADMIN_USER` and `ADMIN_PASSWORD` environment variables on compose up.
-
-Grafana is preconfigured with dashboards and Prometheus as the default data source:
+Navigate to `http://<host-ip>:3000` and login with user ***admin*** password ***admin***.
+Grafana is preconfigured with dashboards ***Mosquitto Broker*** and Prometheus as the default data source:
 
 * Name: Prometheus
 * Type: Prometheus
