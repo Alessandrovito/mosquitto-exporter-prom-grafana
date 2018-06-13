@@ -32,7 +32,7 @@ services:
     container_name: mosquitto-exporter
     #entrypoint: /run.sh
     environment:
-      - "JAVA_OPTS=-Dlogging.level.com.vitale.exporter.mosquitto=DEBUG -Dmosquitto.exporter.account.username=namemosquitto -Dmosquitto.exporter.account.password=pwmosquitto -Dmosquitto.exporter.broker.name=mosquitto"
+      - "JAVA_OPTS=-Dlogging.level.com.vitale.exporter.mosquitto=DEBUG -Dmosquitto.exporter.account.username=${MOSQUITTO_USER:-mosquitto} -Dmosquitto.exporter.account.password=${MOSQUITTO_PASSWORD:-pwmosquitto} -Dmosquitto.exporter.broker.name=mosquitto"
     restart: unless-stopped
     ports:
       - "9180:9180"

@@ -13,6 +13,10 @@ git clone https://github.com/Alessandrovito/mosquitto-exporter-prom-grafana.git
 cd mosquitto-exporter-prom-grafana
 
 docker-compose up -d
+
+or
+
+MOSQUITTO_USER=mosquitto MOSQUITTO_PASSWORD=password docker-compose up -d
 ```
 
 Containers:
@@ -24,13 +28,16 @@ Containers:
 
 ## Setup Mosquitto-exporter
 
-In docker-compose.yml you can edit JAVA_OPTS
+
+
+You can change the credentials in the compose file or by supplying the MOSQUITTO_USER and MOSQUITTO_PASSWORD environment variables on compose up.
+Otherwise you can edit docker-compose.yml the environment variable JAVA_OPTS.
 
 `environment:
       - "JAVA_OPTS=-Dlogging.level.com.vitale.exporter.mosquitto=DEBUG -Dmosquitto.exporter.account.username=namemosquitto -Dmosquitto.exporter.account.password=pwmosquitto -Dmosquitto.exporter.broker.name=mosquitto"
 `
 
-You can set 
+You can set more variable:
 * logging.level.com.vitale.exporter.mosquitto: Logging level for mosquitto-exporter
 * mosquitto.exporter.account.username: Account username dedicated to Mosquitto Exporter user
 * mosquitto.exporter.account.password: Account password dedicated to Mosquitto Exporter user
