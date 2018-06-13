@@ -16,7 +16,7 @@ docker-compose up -d
 
 or
 
-MOSQUITTO_USER=mosquitto MOSQUITTO_PASSWORD=password docker-compose up -d
+MS_USER=mosquitto MS_PASSWORD=password docker-compose up -d
 ```
 
 Containers:
@@ -28,20 +28,12 @@ Containers:
 
 ## Setup Mosquitto-exporter
 
+You can change the credentials in the compose file or by supplying the MS_USER and MS_PASSWORD environment variables on compose up.
 
-
-You can change the credentials in the compose file or by supplying the MOSQUITTO_USER and MOSQUITTO_PASSWORD environment variables on compose up.
-Otherwise you can edit docker-compose.yml the environment variable JAVA_OPTS.
-
-`environment:
-      - "JAVA_OPTS=-Dlogging.level.com.vitale.exporter.mosquitto=DEBUG -Dmosquitto.exporter.account.username=namemosquitto -Dmosquitto.exporter.account.password=pwmosquitto -Dmosquitto.exporter.broker.name=mosquitto"
-`
-
-You can set more variable:
-* logging.level.com.vitale.exporter.mosquitto: Logging level for mosquitto-exporter
-* mosquitto.exporter.account.username: Account username dedicated to Mosquitto Exporter user
-* mosquitto.exporter.account.password: Account password dedicated to Mosquitto Exporter user
-* mosquitto.exporter.broker.name: hostname to reach URL Mqtt Broker
+Meaning of variables:
+* MS_USER: Account username dedicated to Mosquitto Exporter user
+* MS_PASSWORD: Account password dedicated to Mosquitto Exporter user
+* MS_HOSTNAME: hostname to reach URL Mqtt Broker
 
 ## Setup Grafana
 
